@@ -11,74 +11,46 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg    : grunt.file.readJSON('package.json'),
-        uglify : {
-            dist : {
-                options : {
-                    banner : getBanner()
-                },
-                src  : 'src/js/**/*.js',
-                dest : 'dist/js/<%= pkg.name %>.min.js'
-            }
-        },
         concat : {
             dist : {
                 options : {
                     banner : getBanner()
                 },
-                src  : ['src/js/**/*.js'],
-                dest : 'dist/js/<%= pkg.name %>.js'
+                src  : ['src/js/cookie.js'],
+                dest : 'dist/js/cookie.js'
             }
         },
-        sass : {
-            dev : {
-                options: {
-                    style     : 'expanded',
-                    sourcemap : 'none',
-                    debugInfo : false
-                },
-                files: [{
-                    expand : true,
-                    cwd    : 'src/scss/',
-                    src    : ['**/*.scss'],
-                    dest   : 'dist/css/',
-                    ext    : '.css'
-                }]
-            },
+        jsdoc : {
             dist : {
                 options: {
-                    style     : 'expanded',
-                    sourcemap : 'auto',
-                    check     : true,
-                    trace     : true
+                    private   : false,
+                    template  : "node_modules/ink-docstrap/template",
+                    configure : "jsdoc.json"
                 },
-                files: [{
-                    expand : true,
-                    cwd    : 'src/scss/',
-                    src    : ['**/*.scss'],
-                    dest   : 'dist/css/',
-                    ext    : '.min.css'
-                }]
+                src  : ['src/js/cookie.js'],
+                dest : 'doc'
             }
         },
-        watch : {
-            sass : {
-                files : ['src/scss/**/*.scss'],
-                tasks : ['sass:dev']
+        uglify : {
+            dist : {
+                options : {
+                    banner : getBanner()
+                },
+                src  : 'src/js/cookie.js',
+                dest : 'dist/js/cookie.min.js'
             }
         }
     });
 
     // ----------------------------------------------------------------------------------------------- Plugins
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     // ------------------------------------------------------------------------------------------------- Tasks
 
 
-    grunt.registerTask('build',   ['concat:dist', 'uglify:dist', 'sass:dist', 'sass:dev', 'copy:fonts']);
-    grunt.registerTask('default', ['sass:dev']);
+    grunt.registerTask('build',   ['concat:dist', 'uglify:dist', 'jsdoc']);
+    grunt.registerTask('doc',     ['jsdoc']);
 };

@@ -17,7 +17,15 @@
     <body>
     
         <script>
-            var cookie = new Cookie('test', 1);
+            var cookie = new Cookie('customCookieName', 1);
+
+            console.log('Cookie-Data, if exists: ', cookie.getData());
+
+            cookie.save({
+                customProperty1 : 1,
+                customProperty2 : 'two',
+                customProperty3 : [3, 'three']
+            });
         </script>
     </body>
 </html>

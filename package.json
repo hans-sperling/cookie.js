@@ -1,29 +1,30 @@
 {
-    "name"        : "ProjectName",
-    "version"     : "0.1.0",
-    "description" : "",
+    "name"        : "cookie.js",
+    "version"     : "1.0.0",
+    "description" : "Simple javascript cookie class.",
     "keywords" : [
-        ""
+        "javascript",
+        "cookie",
+        "frontend"
     ],
     "repository" : {
         "type" : "git",
-        "url"  : "https://github.com/hans-sperling/projectName"
+        "url"  : "https://github.com/hans-sperling/cookie.js"
     },
     "dependencies" : {
-      "grunt"                : "1.x.x",
-      "grunt-cli"            : "1.x.x",
-      "grunt-contrib-concat" : "1.x.x",
-      "grunt-contrib-sass"   : "1.x.x",
-      "grunt-contrib-copy"   : "1.x.x",
-      "grunt-contrib-uglify" : "2.x.x",
-      "grunt-contrib-watch"  : "1.x.x"
+        "grunt"                : "1.x.x",
+        "grunt-cli"            : "1.x.x",
+        "grunt-contrib-concat" : "1.x.x",
+        "grunt-jsdoc"          : "2.x.x",
+        "ink-docstrap"         : "1.x.x",
+        "grunt-contrib-uglify" : "2.x.x"
     },
     "project" : {
-        "url"   : "https://github.com/hans-sperling/projectName/projects",
+        "url"   : "https://github.com/hans-sperling/cookie.js/projects",
         "email" : "info@bluejade.de"
     },
     "bugs" : {
-        "url"   : "https://github.com/hans-sperling/projectName/issues",
+        "url"   : "https://github.com/hans-sperling/cookie.js/issues",
         "email" : "info@bluejade.de"
     },
     "contributors" : [{
