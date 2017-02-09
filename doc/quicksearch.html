@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"cookie.js.html":{"id":"cookie.js.html","title":"Source: cookie.js","body":" cookie.js - Doc Classes Cookie Source: cookie.js /** * Simple javascript cookie class. * * @class Cookie * * @type {Object} * @property {Function} getData - Returns the stored data of the cookie or null. * @property {Function} save - Saves the given value in the cookie. * @property {Function} remove - Removes the cookie. * * @param {String} name - Name of the cookie * @param {Number} days - Days before cookie expires. * * @returns {Object} * @example * var cookie = new Cookie('customCookieName', 1); * * console.log('Cookie-Data, if exists: ', cookie.getData()); * * cookie.save({ * customProperty1 : 1, * customProperty2 : 'two', * customProperty3 : [3, 'three'] * }); * * cookie.remove(); */ function Cookie(name, days) { // ---------------------------------------------------------------------------------------- Preferences &amp; Properties name = name || 'defaultCookieName'; //&amp; Default cookie name days = days || 1; // ----------------------------------------------------------------------------------------- Internal module methods /* * Returns the public api. * * @private * @returns {Object} */ function getPublicApi() { return { getData : getData, save : save, remove : remove }; } // --------------------------------------------------------------------------------------------------------- Methods /** * Saves the given value in the cookie. * * @public * @param {*} value * @example * var cookie = new Cookie('customCookieName', 1); * * cookie.save({ * customProperty1 : 1, * customProperty2 : 'two', * customProperty3 : [3, 'three'] * }); */ function save(value) { var cookieStringParts = [], date, expires; if (days) { date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); expires = date.toGMTString(); } else { expires = ''; } cookieStringParts.push(name, '=', JSON.stringify(value), ';'); cookieStringParts.push('expires', '=', expires, ';'); cookieStringParts.push('path', '=', '/'); document.cookie = cookieStringParts.join(''); } /** * Returns the stored data of the cookie or null. * * @public * @returns {*|null} * @example * var cookie = new Cookie('customCookieName', 1), * data; * * data = cookie.getData(); * * console.log(data); */ function getData() { var nameEQ = name + '=', ca = document.cookie.split(';'), c, i; for(i = 0; i &lt; ca.length; i++) { c = ca[i]; while (c.charAt(0) == ' ') { c = c.substring(1, c.length); } if (c.indexOf(nameEQ) == 0) { return JSON.parse(c.substring(nameEQ.length,c.length)); } } return null; } /** * Removes the cookie. * * @public * @example * var cookie = new Cookie('customCookieName', 1); * * cookie.remove(); */ function remove() { days = -1; save(''); } // ---------------------------------------------------------------------------------------------------------- Return return getPublicApi(); } × Search results Close "},"classes.list.html":{"id":"classes.list.html","title":"Classes","body":" cookie.js - Doc Classes Cookie Classes Classes Cookie × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" cookie.js - Doc Classes Cookie × Search results Close "},"Cookie.html":{"id":"Cookie.html","title":"Class: Cookie","body":" cookie.js - Doc Classes Cookie Class: Cookie Cookie new Cookie(name, days) Simple javascript cookie class. Parameters: Name Type Description name String Name of the cookie days Number Days before cookie expires. Properties: Name Type Description getData function Returns the stored data of the cookie or null. save function Saves the given value in the cookie. remove function Removes the cookie. Source: cookie.js, line 1 Returns: Type Object Example var cookie = new Cookie('customCookieName', 1); console.log('Cookie-Data, if exists: ', cookie.getData()); cookie.save({ customProperty1 : 1, customProperty2 : 'two', customProperty3 : [3, 'three'] }); cookie.remove(); Methods &lt;inner&gt; getData() Returns the stored data of the cookie or null. Source: cookie.js, line 102 Returns: Type * | null Example var cookie = new Cookie('customCookieName', 1), data; data = cookie.getData(); console.log(data); &lt;inner&gt; remove() Removes the cookie. Source: cookie.js, line 132 Example var cookie = new Cookie('customCookieName', 1); cookie.remove(); &lt;inner&gt; save(value) Saves the given value in the cookie. Parameters: Name Type Description value * Source: cookie.js, line 67 Example var cookie = new Cookie('customCookieName', 1); cookie.save({ customProperty1 : 1, customProperty2 : 'two', customProperty3 : [3, 'three'] }); × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
